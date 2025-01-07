@@ -7,7 +7,11 @@ For the first assignment you will have to create endpoints to manage hotel room 
 The data will be saved into a sql database.
 
 ### Here are the 3 endpoints for the room resource
-GET:  /api/room
+GET:  /api/rooms
+
+* status: 200
+* Content-Type: application/json
+
 ```json
 {
   "rooms:" [
@@ -24,7 +28,10 @@ GET:  /api/room
   ]
 }
 ```
-GET:  /api/room/{id}
+GET:  /api/rooms/{id}
+
+* status: 200
+* Content-Type: application/json
 
 ```json
 {
@@ -34,17 +41,36 @@ GET:  /api/room/{id}
 }
 ```
 
-POST: /api/room (when creating a room the backend generates a unique uuid)
+POST: /api/rooms (when creating a room the backend generates a unique uuid)
+
+Request:
 ```json
 {
   "nr": 412,
   "description": "A penthouse type room with 2 bedrooms, 2 bathrooms, roomy living space and a kitchen"
 }
 ```
+Response: (header and body)
+* status: 201
+* Content-Type: application/json
+* Location: http://example.com/api/rooms/996859f1-8980-4c34-aa22-3a3fefba29eb
+```json
+{
+  "id": "996859f1-8980-4c34-aa22-3a3fefba29eb",
+  "nr": 412,
+  "description": "A penthouse type room with 2 bedrooms, 2 bathrooms, roomy living space and a kitchen"
+}
+```
 
 ### Here are the 2 endpoints for the guest resource
+Fetching a specific guest by id should produce the following
 
-GET:  /api/guest/{id}
+Response: (header and body)
+
+GET:  /api/guests/{id}
+
+* status: 200
+* Content-Type: application/json
 ```json
 {
   "id": "2bf657e2-00a1-4dfd-a596-efc439b2a5cd",
@@ -55,7 +81,7 @@ GET:  /api/guest/{id}
   "details": "Alergic to nuts",
 }
 ```
-POST: /api/guest (when creating a guest the backend generates a unique uuid)
+POST: /api/guests (when creating a guest the backend generates a unique uuid)
 ```json
 {
   "first_name": "Piet",
@@ -65,7 +91,20 @@ POST: /api/guest (when creating a guest the backend generates a unique uuid)
   "details": "Alergic to nuts",
 }
 ```
-
+Response: (header and body)
+* status: 201
+* Content-Type: application/json
+Location: http://example.com/api/guests/996859f1-8980-4c34-aa22-3a3fefba29eb
+```json
+{
+  "id": "9f34e4e9-3898-46d4-bc10-af2145d23722",
+  "first_name": "Piet",
+  "last_name": "Hein",
+  "email": "piethein@test.com",
+  "phone": "+3123456789",
+  "details": "Alergic to nuts",
+}
+```
 
 #### Technical requirements:
 - spring boot + java
